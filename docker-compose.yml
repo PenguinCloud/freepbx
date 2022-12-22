@@ -1,8 +1,20 @@
 ---
 version: "2.4"
 services:
+  mariadb:
+    image: 'bitnami/mariadb:latest'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_PASSWORD=p@ssword
+      - MARIADB_DATABASE=freepbx
+      - MARIADB_USER=freepbx
+    ports:
+      - "3306:3306"
+    networks:
+      - freepbx
+
   freepbx:
-    image: penguintech/h-mdm
+    image: penguintech/freepbx
     build: .
     ports:
       - 8080:8080
