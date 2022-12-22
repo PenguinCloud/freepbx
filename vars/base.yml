@@ -2,3 +2,10 @@ run:
   user: ptg-user
 app:
   title: "{{ lookup('ansible.builtin.env', 'APP_TILE') }}"
+
+asterisk:
+  link: "{{ lookup('ansible.builtin.env', 'ASTERISK_LINK') }}"
+  version: "{{ lookup('ansible.builtin.env', 'ASTERISK_VERSION') }}"
+  ver: "{{ lookup('ansible.builtin.env', 'ASTERISK_VER') }}"
+
+itut: "{{ lookup('ansible.builtin.env', 'ITUT') }}"

@@ -1,0 +1,66 @@
+---
+- name: Download Asterisks
+  ansible.builtin.get_url:
+    url: "{{ asterisk.link }}"
+    dest: /opt
+
+- name: Extract Asterisks
+  unarchive:
+    src: "/opt/{{ asterisk.version }}.tar.gz"
+    dest: /opt
+
+- name: Delete Asterisk zip file
+  file:
+    path: "/opt/{{ asterisk.version }}.tar.gz"
+    state: absent
+
+- name: Rename Asterisk repo
+  shell: "mv /opt/{{ asterisk.ver }} /opt/asterisk"
+
+- name: Install required dependencies
+  shell:
+    chdir: /opt/asterisk/contrib/scripts
+    cmd: |
+      ./get_mp3_source.sh
+
+- name: Install required dependencies
+  ansible.builtin.expect:
+    chdir: /opt/asterisk/contrib/scripts
+    command: ./install_prereq install
+    timeout: 180
+    responses:
+      (?i)ITU-T telephone code: "{{ itut }}"
+
+- name: Configure Asterisk
+  shell:
+    chdir: /opt/asterisk
+    cmd: ./configure
+
+- ame: Run command to add menuselect options
+  shell:
+    chdir: /opt/asterisk
+    cmd: |
+      make menuselect.makeopts
+      menuselect/menuselect
+      --enable CORE_SOUNDS
+      --enable MOH
+      --enable EXTRA SOUNDS
+      menuselect.makeopts
+
+- name: Build Asterisk
+  shell:
+    chdir: /opt/asterisk
+    cmd: make -j2
+
+- name: Build Asterisk
+  shell:
+    chdir: /opt/asterisk
+    cmd: make install
+
+- name: Install samples and configs
+  shell:
+    chdir: /opt/asterisk
+    cmd: |
+      make samples
+      make config
+      ldconfig

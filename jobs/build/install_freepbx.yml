@@ -1,0 +1,15 @@
+---
+- name: Download FreePbx
+  ansible.builtin.get_url:
+    url: "{{ freepbx.link }}"
+    dest: /opt
+
+- name: Extract FreePbx
+  unarchive:
+    src: "/opt/{{ freepbx.version }}.tgz"
+    dest: /opt
+
+- name: Delete FreePbx zip file
+  file:
+    path: "/opt/{{ freepbx.version }}.tgz"
+    state: absent

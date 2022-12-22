@@ -1,0 +1,12 @@
+---
+- name: Install Asterisk dependencies
+  include_tasks:
+    file: install_asterisk_dependencies.yml
+
+- name: Install FreePbx dependencies
+  include_tasks:
+    file: install_freepbx_dependencies.yml
+
+- name: Install Aterisks
+  include_tasks:
+    file: install_asterisks.yml

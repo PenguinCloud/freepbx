@@ -1,0 +1,23 @@
+---
+- name: Install Dependencies required by Asterisks
+  ansible.builtin.apt:
+    name:
+    - unzip
+    - gnupg2
+    - curl
+    - libnewt-dev
+    - libssl-dev
+    - libncurses5-dev
+    - subversion
+    - libsqlite3-dev
+    - build-essential
+    - libjansson-dev
+    - libxml2-dev
+    - uuid-dev
+    - subversion
+    state: latest
+    update_cache: yes
+
+- name: Install pexpect python package
+  ansible.builtin.pip:
+    name: pexpect
