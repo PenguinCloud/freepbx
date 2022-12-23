@@ -1,5 +1,6 @@
 run:
   user: ptg-user
+
 app:
   title: "{{ lookup('ansible.builtin.env', 'APP_TILE') }}"
 
@@ -8,8 +9,14 @@ asterisk:
   version: "{{ lookup('ansible.builtin.env', 'ASTERISK_VERSION') }}"
   ver: "{{ lookup('ansible.builtin.env', 'ASTERISK_VER') }}"
 
-itut: "{{ lookup('ansible.builtin.env', 'ITUT') }}
+itut: "{{ lookup('ansible.builtin.env', 'ITUT') }}"
 
 freepbx:
   link: "{{ lookup('ansible.builtin.env', 'FREEPBX_LINK') }}"
   version: "{{ lookup('ansible.builtin.env', 'FREEPBX_VERSION') }}"
+
+nodejs_link: "{{ lookup('ansible.builtin.env', 'NODEJS_LINK') }}"
+
+odbc_url: "{{ lookup('ansible.builtin.env', 'ODBC_LINK') }}"
+
+libssl_url: "{{ lookup('ansible.builtin.env', 'LIBSSL_URL') }}"

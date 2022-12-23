@@ -18,8 +18,9 @@ ARG ASTERISK_VER="asterisk-18.15.1"
 ARG ITUT="011"
 ARG FREEPBX_LINK="http://mirror.freepbx.org/modules/packages/freepbx/freepbx-15.0-latest.tgz"
 ARG FREEPBX_VER="freepbx-15.0-latest"
-
-# BUILD IT!
+ARG NODEJS_LINK="https://deb.nodesource.com/setup_14.x"
+ARG LIBSSL_URL="https://wiki.freepbx.org/download/attachments/202375584/libssl1.0.2_1.0.2u-1_deb9u4_amd64.deb"
+ARG ODBC_LINK="https://wiki.freepbx.org/download/attachments/122487323/mariadb-connector-odbc_3.0.7-1_amd64.deb"
 RUN ansible-playbook build.yml -c local
 
 # PUT YER ENVS in here

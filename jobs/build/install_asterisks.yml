@@ -17,7 +17,7 @@
 - name: Rename Asterisk repo
   shell: "mv /opt/{{ asterisk.ver }} /opt/asterisk"
 
-- name: Install required dependencies
+- name: Install mp3 required dependencies
   shell:
     chdir: /opt/asterisk/contrib/scripts
     cmd: |
@@ -36,16 +36,28 @@
     chdir: /opt/asterisk
     cmd: ./configure
 
-- ame: Run command to add menuselect options
+- name: Configure Asterisk
+  shell:
+    chdir: /opt/asterisk
+    cmd: ./configure
+
+- name: Run command enable core sound module
   shell:
     chdir: /opt/asterisk
     cmd: |
-      make menuselect.makeopts
-      menuselect/menuselect
-      --enable CORE_SOUNDS
-      --enable MOH
-      --enable EXTRA SOUNDS
-      menuselect.makeopts
+      menuselect/menuselect --enable-category MENUSELECT_CORE_SOUNDS menuselect.makeopts
+
+- name: Run command enable MOH module
+  shell:
+    chdir: /opt/asterisk
+    cmd: |
+      menuselect/menuselect --enable-category MENUSELECT_MOH menuselect.makeopts
+
+- name: Run command enable extra sound module
+  shell:
+    chdir: /opt/asterisk
+    cmd: |
+      menuselect/menuselect --enable-category MENUSELECT_EXTRA_SOUNDS menuselect.makeopts
 
 - name: Build Asterisk
   shell:

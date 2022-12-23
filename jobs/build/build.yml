@@ -1,12 +1,21 @@
 ---
-- name: Install Asterisk dependencies
+- name: Install dependencies
   include_tasks:
-    file: install_asterisk_dependencies.yml
+    file: install_dependencies.yml
 
-- name: Install FreePbx dependencies
+- name: Install node js
   include_tasks:
-    file: install_freepbx_dependencies.yml
+    file: install_nodejs.yml
 
-- name: Install Aterisks
+- name: Install node js
   include_tasks:
-    file: install_asterisks.yml
+    file: install_odbc.yml
+
+
+#- name: Install Aterisks
+#  include_tasks:
+#    file: install_asterisks.yml
+#
+#- name: Install FreePbx
+#  include_tasks:
+#    file: install_freepbx.yml
