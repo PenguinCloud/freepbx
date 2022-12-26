@@ -19,9 +19,8 @@
 
 - name: Install mp3 required dependencies
   shell:
-    chdir: /opt/asterisk/contrib/scripts
-    cmd: |
-      ./get_mp3_source.sh
+    chdir: /opt/asterisk
+    cmd: contrib/scripts/get_mp3_source.sh
 
 - name: Install required dependencies
   ansible.builtin.expect:
@@ -36,43 +35,37 @@
     chdir: /opt/asterisk
     cmd: ./configure
 
-- name: Configure Asterisk
+- name: Run make menuselect command for asterisk
   shell:
     chdir: /opt/asterisk
-    cmd: ./configure
+    cmd: make menuselect.makeopts
 
-- name: Run command enable core sound module
+- name: Run command to enable app_macro and format_mp3
   shell:
     chdir: /opt/asterisk
-    cmd: |
-      menuselect/menuselect --enable-category MENUSELECT_CORE_SOUNDS menuselect.makeopts
-
-- name: Run command enable MOH module
-  shell:
-    chdir: /opt/asterisk
-    cmd: |
-      menuselect/menuselect --enable-category MENUSELECT_MOH menuselect.makeopts
-
-- name: Run command enable extra sound module
-  shell:
-    chdir: /opt/asterisk
-    cmd: |
-      menuselect/menuselect --enable-category MENUSELECT_EXTRA_SOUNDS menuselect.makeopts
+    cmd: menuselect/menuselect --enable app_macro --enable format_mp3 menuselect.makeopts
 
 - name: Build Asterisk
   shell:
     chdir: /opt/asterisk
-    cmd: make -j2
+    cmd: make
 
 - name: Build Asterisk
   shell:
     chdir: /opt/asterisk
     cmd: make install
 
-- name: Install samples and configs
+- name: Run command to make config
   shell:
     chdir: /opt/asterisk
-    cmd: |
-      make samples
-      make config
-      ldconfig
+    cmd: make samples
+
+- name: Run command to make config
+  shell:
+    chdir: /opt/asterisk
+    cmd: make config
+
+- name: Run command
+  shell:
+    chdir: /opt/asterisk
+    cmd: ldconfig

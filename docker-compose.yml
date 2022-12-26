@@ -17,8 +17,9 @@ services:
     image: penguintech/freepbx
     build: .
     ports:
-      - 8080:8080
-      - 31000:31000
+      - "8080:8080"
+      - "5060:5060"
+      - "5061:5061"
     networks:
       - freepbx
     healthcheck:

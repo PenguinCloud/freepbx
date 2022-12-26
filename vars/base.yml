@@ -1,5 +1,5 @@
 run:
-  user: ptg-user
+  user: asterisk
 
 app:
   title: "{{ lookup('ansible.builtin.env', 'APP_TILE') }}"

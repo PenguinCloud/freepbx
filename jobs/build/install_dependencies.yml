@@ -7,54 +7,17 @@
 - name: Install Dependencies
   ansible.builtin.apt:
     name:
-    - build-essential
-    - openssh-server
-    - nginx
-    - bison
-    - flex
-    - php7.4
-    - php7.4-curl
-    - php7.4-cli
-    - php7.4-common
-    - php7.4-mysql
-    - php7.4-gd
-    - php7.4-mbstring
-    - php7.4-intl
-    - php7.4-xml
-    - php7.4-fpm
-    - php-pear
-    - curl
-    - sox
-    - libncurses5-dev
-    - libssl-dev
-    - mpg123
-    - libxml2-dev
     - libnewt-dev
-    - sqlite3
-    - libsqlite3-dev
-    - pkg-config
-    - automake
-    - libtool
-    - autoconf
-    - unixodbc-dev
-    - uuid
-    - uuid-dev
-    - libasound2-dev
-    - libogg-dev
-    - libvorbis-dev
-    - libicu-dev
-    - libcurl4-openssl-dev
-    - libical-dev
-    - libneon27-dev
-    - libsrtp2-dev
-    - libspandsp-dev
+    - libssl-dev
+    - libncurses5-dev
     - subversion
-    - libtool-bin
-    - python-dev
-    - unixodbc
-    - dirmngr
-    - sendmail-bin
-    - sendmail
+    - libsqlite3-dev
+    - build-essential
+    - libjansson-dev
+    - libxml2-dev
+    - uuid-dev
+    - nginx
+    - php8.0-fpm
     state: latest
     update_cache: yes
 
