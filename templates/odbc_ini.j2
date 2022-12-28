@@ -1,0 +1,9 @@
+[asterisk-database]
+Description = MySQL connection to 'asterisk' database
+Driver = MySQL
+Server = {{ database.host }}
+Database = {{ database.name }}
+User = {{ database.user }}
+Password = {{ database.password }}
+Port = 3306
+Option = 3

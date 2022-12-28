@@ -1,12 +1,39 @@
 ---
-- name: Install libssl1.0.2_1.0.2u-1
-  ansible.builtin.apt:
-    deb: "{{ libssl_url }}"
+- name: Download odbc
+  ansible.builtin.get_url:
+    url: "{{ odbc.link }}"
+    dest: /opt
 
-- name: Install mariadb-connector-odbc_3.0.7-1
-  ansible.builtin.apt:
-    deb: "{{ odbc_url }}"
+- name: Extract odbc
+  unarchive:
+    src: "/opt/{{ odbc.version }}.tar.gz"
+    dest: /opt
 
+- name: Delete odbc zip file
+  file:
+    path: "/opt/{{ odbc.version }}.tar.gz"
+    state: absent
 
+- name: Rename directory for odbc
+  shell: "mv /opt/{{ odbc.version }} /opt/odbc"
 
+- name: Run cmd 1 to install odbc
+  shell:
+    chdir: /opt/odbc
+    cmd: install lib/mariadb/libmaodbc.so /usr/lib/
+
+- name: Run cmd 2 to install odbc
+  shell:
+    chdir: /opt/odbc
+    cmd: install -d /usr/lib/mariadb/
+
+- name: Run cmd 3 to install odbc
+  shell:
+    chdir: /opt/odbc
+    cmd: install -d /usr/lib/mariadb/plugin/
+
+- name: Run cmd 4 to install odbc
+  shell:
+    chdir: /opt/odbc
+    cmd: install lib/mariadb/plugin/* /usr/lib/mariadb/plugin/
 

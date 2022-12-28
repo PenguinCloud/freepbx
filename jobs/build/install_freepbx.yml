@@ -13,3 +13,9 @@
   file:
     path: "/opt/{{ freepbx.version }}.tgz"
     state: absent
+
+
+- name: Start asterisk
+  shell:
+    chdir: /opt/freepbx
+    cmd: ./start_asterisk start

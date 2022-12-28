@@ -1,0 +1,9 @@
+---
+- name: Test database connection
+  include_tasks:
+    file: jobs/tests/database_test.yml
+
+
+- name: Configure database connection
+  include_tasks:
+    file: config_database_connection.yml

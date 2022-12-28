@@ -17,6 +17,13 @@ freepbx:
 
 nodejs_link: "{{ lookup('ansible.builtin.env', 'NODEJS_LINK') }}"
 
-odbc_url: "{{ lookup('ansible.builtin.env', 'ODBC_LINK') }}"
+odbc:
+  link: "{{ lookup('ansible.builtin.env', 'ODBC_LINK') }}"
+  version: "{{ lookup('ansible.builtin.env', 'ODBC_VERSION') }}"
 
-libssl_url: "{{ lookup('ansible.builtin.env', 'LIBSSL_URL') }}"
+database:
+  name: "{{ lookup('env', 'DATABASE_NAME') }}"
+  user: "{{ lookup('env', 'DATABASE_USER') }}"
+  password: "{{ lookup('env', 'DATABASE_PASSWORD') }}"
+  host: "{{ lookup('env', 'DATABASE_HOST') }}"
+  port: "{{ lookup('env', 'DATABASE_PORT') }}"

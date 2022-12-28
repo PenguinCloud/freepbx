@@ -6,8 +6,8 @@ services:
     environment:
       - MARIADB_ROOT_PASSWORD=password123
       - MARIADB_PASSWORD=p@ssword
-      - MARIADB_DATABASE=freepbx
-      - MARIADB_USER=freepbx
+      - MARIADB_DATABASE=asterisk
+      - MARIADB_USER=asterisk
     ports:
       - "3306:3306"
     networks:
@@ -20,6 +20,8 @@ services:
       - "8080:8080"
       - "5060:5060"
       - "5061:5061"
+    depends_on:
+      - mariadb
     networks:
       - freepbx
     healthcheck:
