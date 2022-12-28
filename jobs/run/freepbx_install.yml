@@ -1,0 +1,5 @@
+---
+- name: Template freepbx config file
+  template:
+    src: templates/freepbx_conf.j2
+    dest: /etc/freepbx.conf

@@ -1,0 +1,11 @@
+<?php
+$amp_conf['AMPDBUSER'] = '{{ database.user }}';
+$amp_conf['AMPDBPASS'] = '{{ database.password }}';
+$amp_conf['AMPDBHOST'] = '{{ database.host }}';
+$amp_conf['AMPDBPORT'] = '{{ database.port }}';
+$amp_conf['AMPDBNAME'] = '{{ database.name }}';
+$amp_conf['AMPDBENGINE'] = 'mysql';
+$amp_conf['datasource'] = ''; //for sqlite3
+
+require_once('/var/www/html/admin/bootstrap.php');
+?>

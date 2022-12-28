@@ -5,7 +5,7 @@
     dest: /etc/odbc.ini
     force: yes
 
-- name: Template obc config file
+- name: Template odbcinst.ini config file
   template:
     src: templates/odbcinst_ini.j2
     dest: /etc/odbcinst.ini
