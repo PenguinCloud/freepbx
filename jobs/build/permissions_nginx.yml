@@ -1,12 +1,4 @@
 ---
-- name: Recursively change ownership of freeepbx directory
-  ansible.builtin.file:
-    path: /opt/freepbx
-    state: directory
-    recurse: yes
-    owner: "{{ run.user }}"
-    group: "{{ run.user }}"
-
 - name: Recursively change ownership of /var/lib/nginx
   ansible.builtin.file:
     path: /var/lib/nginx

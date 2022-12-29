@@ -2,8 +2,14 @@
 - name: Test database connection
   include_tasks:
     file: jobs/tests/database_test.yml
-
+  tags: pre
 
 - name: Configure database connection
   include_tasks:
     file: config_database_connection.yml
+  tags: pre
+
+- name: Install freepbx
+  include_tasks:
+    file: freepbx_install.yml
+  tags: pre

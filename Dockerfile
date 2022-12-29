@@ -30,8 +30,10 @@ ENV DATABASE_PASSWORD="p@ssword"
 ENV DATABASE_HOST="mariadb"
 ENV DATABASE_PORT="3306"
 
+ENTRYPOINT ["/bin/bash","/opt/manager/entrypoint.sh", "--tags" ,"pre"]
+
 # Switch to non-root user
-# USER asterisk
+USER asterisk
 
 # Entrypoint time (aka runtime)
-ENTRYPOINT ["/bin/bash","/opt/manager/entrypoint.sh"]
+ENTRYPOINT ["/bin/bash","/opt/manager/entrypoint.sh", "--tags", "after"]

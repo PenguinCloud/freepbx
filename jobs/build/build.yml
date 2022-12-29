@@ -31,12 +31,12 @@
   include_tasks:
     file: install_freepbx.yml
 
-#- name: Set Nginx permissions
-#  include_tasks:
-#    file: permissions_nginx.yml
-#
-#- name: Set Php_Fpm permissions
-#  include_tasks:
-#    file: permissions_phpfpm.yml
-#
+- name: Set Nginx permissions
+  include_tasks:
+    file: permissions_nginx.yml
+
+- name: Set Php_Fpm permissions
+  include_tasks:
+    file: permissions_phpfpm.yml
+
 
