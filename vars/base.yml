@@ -27,3 +27,23 @@ database:
   password: "{{ lookup('env', 'DATABASE_PASSWORD') }}"
   host: "{{ lookup('env', 'DATABASE_HOST') }}"
   port: "{{ lookup('env', 'DATABASE_PORT') }}"
+
+server_address: "{{ lookup('env', 'SERVER_ADDRESS') }}"
+
+organization:
+  name: "{{ lookup('env', 'ORGANIZATION_NAME') }}"
+  country: "{{ lookup('env', 'ORGANIZATION_COUNTRY') }}"
+  email: "{{ lookup('env', 'ORGANIZATION_EMAIL') }}"
+  hostname: "{{ lookup('env', 'ORGANISATION_HOSTNAME') }}"
+
+cpu_count: "{{ lookup('env', 'CPU_COUNT') }}"
+
+file_limit: "{{ lookup('env', 'FILE_LIMIT') }}"
+
+ports:
+  http: "{{ lookup('env', 'HTTP_PORT') }}"
+  https: "{{ lookup('env', 'HTTPS_PORT') }}"
+
+ssl_cert: "{{ lookup('env', 'SSL_CERT') }}"
+
+protocol: "{{ lookup('env', 'PROTOCOL') }}"

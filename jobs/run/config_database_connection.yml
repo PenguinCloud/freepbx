@@ -9,3 +9,9 @@
   template:
     src: templates/odbcinst_ini.j2
     dest: /etc/odbcinst.ini
+
+- name: Template file to /etc/asterisk/res_odbc_conf.j2
+  template:
+    src: templates/res_odbc_conf.j2
+    dest: /etc/asterisk/res_odbc.conf
+    force: yes

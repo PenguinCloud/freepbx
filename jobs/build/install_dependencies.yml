@@ -42,6 +42,7 @@
     - build-essential
     - unixodbc
     - python3-pymysql
+    - sox
     state: latest
     update_cache: yes
 

@@ -12,7 +12,7 @@ RUN apt update && apt dist-upgrade -y && apt auto-remove -y && apt clean -y
 
 # PUT YER ARGS in here
 ARG APP_TITLE="FreePbx"
-ARG ASTERISK_LINK="http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-18-current.tar.gz"
+ARG ASTERISK_LINK="https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-18-current.tar.gz"
 ARG ASTERISK_VERSION="asterisk-18-current"
 ARG ASTERISK_VER="asterisk-18.15.1"
 ARG ITUT="011"
@@ -29,11 +29,19 @@ ENV DATABASE_USER="asterisk"
 ENV DATABASE_PASSWORD="p@ssword"
 ENV DATABASE_HOST="mariadb"
 ENV DATABASE_PORT="3306"
-
-ENTRYPOINT ["/bin/bash","/opt/manager/entrypoint.sh", "--tags" ,"pre"]
+ENV ORGANIZATION_NAME="name"
+ENV ORGANIZATION_COUNTRY="US"
+ENV ORGANIZATION_EMAIL="admin@localhost"
+ENV SERVER_ADDRESS="localhost"
+ENV CPU_COUNT="2"
+ENV FILE_LIMIT="1042"
+ENV HTTP_PORT="8080"
+ENV HTTPS_PORT="8443"
+ENV SSL_CERT="open"
+ENV PROTOCOL="https"
 
 # Switch to non-root user
-USER asterisk
+# USER asterisk
 
 # Entrypoint time (aka runtime)
-ENTRYPOINT ["/bin/bash","/opt/manager/entrypoint.sh", "--tags", "after"]
+ENTRYPOINT ["/bin/bash","/opt/manager/entrypoint.sh"]

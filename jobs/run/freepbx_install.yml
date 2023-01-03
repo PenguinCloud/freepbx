@@ -29,7 +29,17 @@
 - name: Install module installall
   shell:
     chdir: /opt/freepbx
-    cmd: fwconsole ma install all
+    cmd: fwconsole ma installall
+
+- name: Delete module Isymphony
+  shell:
+    chdir: /opt/freepbx
+    cmd: fwconsole ma delete cxpanel
+
+- name: Update all modules
+  shell:
+    chdir: /opt/freepbx
+    cmd: fwconsole ma upgradeall
 
 - name: Install module reload
   shell:
@@ -41,10 +51,11 @@
     chdir: /opt/freepbx
     cmd: fwconsole restart
 
-- name: Set permissions for asterisk user
-  ansible.builtin.file:
-    path: /opt/freepbx-webroot
-    state: directory
-    recurse: yes
-    owner: "{{ run.user }}"
-    group: "{{ run.user }}"
+
+#- name: Set permissions for asterisk user
+#  ansible.builtin.file:
+#    path: /opt/freepbx-webroot
+#    state: directory
+#    recurse: yes
+#    owner: "{{ run.user }}"
+#    group: "{{ run.user }}"

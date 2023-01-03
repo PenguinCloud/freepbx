@@ -1,6 +1,6 @@
 ---
-- name: Start nginx
+- name: Start services
   shell:
     cmd: |
       /etc/init.d/nginx restart
-      /etc/init.d/php8.0-fpm restart
+      /etc/init.d/php7.4-fpm restart

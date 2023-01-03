@@ -7,15 +7,15 @@
 
 - name: Configure nginx http webserver
   template:
-    src: /opt/manager/templates/wpsite_http.j2
-    dest: /etc/nginx/conf.d/wpsite_http.conf
+    src: /opt/manager/templates/freepbx_http.j2
+    dest: /etc/nginx/conf.d/freepbx_http.conf
     force: yes
   when: protocol == "http"
 
 - name: Configure nginx https webserver
   template:
-    src: /opt/manager/templates/wpsite_https.j2
-    dest: /etc/nginx/conf.d/wpsite_https.conf
+    src: /opt/manager/templates/freepbx_https.j2
+    dest: /etc/nginx/conf.d/freepbx_https.conf
     force: yes
   when: protocol == "https"
 
