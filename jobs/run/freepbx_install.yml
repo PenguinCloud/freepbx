@@ -51,7 +51,6 @@
     chdir: /opt/freepbx
     cmd: fwconsole restart
 
-
 #- name: Set permissions for asterisk user
 #  ansible.builtin.file:
 #    path: /opt/freepbx-webroot

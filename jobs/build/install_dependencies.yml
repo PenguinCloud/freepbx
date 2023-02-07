@@ -37,7 +37,7 @@
     - php7.4-gd
     - php7.4-gettext
     - php7.4-xml
-    - php7.4-phpdbg
+    - php7.4-json
     - php7.4-snmp
     - build-essential
     - unixodbc
