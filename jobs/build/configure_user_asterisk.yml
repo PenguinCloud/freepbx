@@ -1,0 +1,12 @@
+---
+- name: Temoplate Asterisk default file
+  template:
+    src: /opt/manager/templates/asterisk_default.j2
+    dest: /etc/default/asterisk
+    force: yes
+
+- name: Temoplate Asterisk default file
+  template:
+    src: /opt/manager/templates/asterisk_conf.j2
+    dest: /etc/asterisk/asterisk.conf
+    force: yes

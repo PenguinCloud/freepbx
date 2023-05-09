@@ -1,0 +1,33 @@
+server {
+    listen {{ ports.http }};
+    listen [::]:{{ ports.http }};
+    server_name {{ server_address }};
+
+    root /opt/freepbx-webroot;
+
+    error_log /var/log/nginx/freepbx.error;
+    access_log /var/log/nginx/freepbx.access;
+
+    index index.html index.htm index.nginx-debian.html index.php;
+
+    server_name HOSTNAME;  # don't use _ or FreePBX may complain about referer
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;  # server defaults are good
+        fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+        fastcgi_param HTACCESS on;  # disables FreePBX htaccess warning
+    }
+
+    # disallows the things that the FreePBX .htaccess files disallow
+    location ~ (/\.ht|/\.git|\.ini$|/libraries|/helpers|/i18n|/node|/views/.+php$) {
+        deny all;
+    }
+
+    # from the api module .htaccess file
+    rewrite ^/admin/api/([^/]*)/([^/]*)/?(.*)?$ /admin/api/api.php?module=$1&command=$2&route=$3 last;
+
+}

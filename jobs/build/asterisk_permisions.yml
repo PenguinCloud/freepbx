@@ -1,0 +1,41 @@
+---
+- name: Recursively change ownership of /etc/asterisk
+  ansible.builtin.file:
+    path: /etc/asterisk
+    state: directory
+    recurse: yes
+    owner: "{{ run.user }}"
+    group: "{{ run.user }}"
+
+- name: Recursively change ownership of /usr/lib/asterisk
+  ansible.builtin.file:
+    path: /usr/lib/asterisk
+    state: directory
+    recurse: yes
+    owner: "{{ run.user }}"
+    group: "{{ run.user }}"
+
+- name: Recursively change ownership of /var/lib/asterisk
+  ansible.builtin.file:
+    path: /var/lib/asterisk
+    state: directory
+    recurse: yes
+    owner: "{{ run.user }}"
+    group: "{{ run.user }}"
+
+- name: Recursively change ownership of /var/log/asterisk
+  ansible.builtin.file:
+    path: /var/log/asterisk
+    state: directory
+    recurse: yes
+    owner: "{{ run.user }}"
+    group: "{{ run.user }}"
+
+- name: Recursively change ownership of /var/spool/asterisk
+  ansible.builtin.file:
+    path: /var/spool/asterisk
+    state: directory
+    recurse: yes
+    owner: "{{ run.user }}"
+    group: "{{ run.user }}"
+

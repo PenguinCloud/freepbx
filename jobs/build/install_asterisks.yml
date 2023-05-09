@@ -1,0 +1,71 @@
+---
+- name: Download Asterisks
+  ansible.builtin.get_url:
+    url: "{{ asterisk.link }}"
+    dest: /opt
+
+- name: Extract Asterisks
+  unarchive:
+    src: "/opt/{{ asterisk.version }}.tar.gz"
+    dest: /opt
+
+- name: Delete Asterisk zip file
+  file:
+    path: "/opt/{{ asterisk.version }}.tar.gz"
+    state: absent
+
+- name: Rename Asterisk repo
+  shell: "mv /opt/{{ asterisk.ver }} /opt/asterisk"
+
+- name: Install mp3 required dependencies
+  shell:
+    chdir: /opt/asterisk
+    cmd: contrib/scripts/get_mp3_source.sh
+
+- name: Install required dependencies
+  ansible.builtin.expect:
+    chdir: /opt/asterisk/contrib/scripts
+    command: ./install_prereq install
+    timeout: 180
+    responses:
+      (?i)ITU-T telephone code: "{{ itut }}"
+
+- name: Configure Asterisk
+  shell:
+    chdir: /opt/asterisk
+    cmd: ./configure
+
+- name: Run make menuselect command for asterisk
+  shell:
+    chdir: /opt/asterisk
+    cmd: make menuselect.makeopts
+
+- name: Run command to enable app_macro and format_mp3
+  shell:
+    chdir: /opt/asterisk
+    cmd: menuselect/menuselect --enable app_macro --enable format_mp3 menuselect.makeopts
+
+- name: Build Asterisk
+  shell:
+    chdir: /opt/asterisk
+    cmd: make
+
+- name: Build Asterisk
+  shell:
+    chdir: /opt/asterisk
+    cmd: make install
+
+- name: Run command to make config
+  shell:
+    chdir: /opt/asterisk
+    cmd: make samples
+
+- name: Run command to make config
+  shell:
+    chdir: /opt/asterisk
+    cmd: make config
+
+- name: Run command
+  shell:
+    chdir: /opt/asterisk
+    cmd: ldconfig

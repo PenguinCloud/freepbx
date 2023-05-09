@@ -1,5 +1,36 @@
 ---
 version: "2.4"
 services:
-  app:
-    image: penguintech/core-ansible
+  mariadb:
+    image: 'bitnami/mariadb:latest'
+    environment:
+      - MARIADB_ROOT_PASSWORD=password123
+      - MARIADB_PASSWORD=p@ssword
+      - MARIADB_DATABASE=asterisk
+      - MARIADB_USER=asterisk
+    ports:
+      - "3306:3306"
+    networks:
+      - freepbx
+
+  freepbx:
+    image: penguintech/freepbx
+    build: .
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "5060:5060"
+      - "5061:5061"
+    depends_on:
+      - mariadb
+    networks:
+      - freepbx
+    healthcheck:
+      test: ["CMD", "ansible-playbook", "entrypoint.yml", "--tag", "test"]
+      interval: 5m
+      timeout: 10s
+      retries: 5
+      start_period: 5s
+
+networks:
+  freepbx:

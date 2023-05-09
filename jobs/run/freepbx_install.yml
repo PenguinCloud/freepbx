@@ -1,0 +1,60 @@
+---
+- name: Run command to start asterisk
+  shell:
+    chdir: /opt/freepbx
+    cmd: ./start_asterisk start
+
+- name: Run command to install freepbx
+  shell:
+    chdir: /opt/freepbx
+    cmd: >
+      ./install
+      --dbengine=mysql
+      --dbname="{{ database.name }}"
+      --dbhost="{{ database.host }}"
+      --dbport="{{ database.port }}"
+      --cdrdbname=MariaDB-client
+      --dbuser="{{ database.user}}"
+      --dbpass="{{ database.password }}"
+      --user=asterisk
+      --group=asterisk
+      --webroot=/opt/freepbx-webroot
+      -n
+
+- name: Install module disablerepo commercial
+  shell:
+    chdir: /opt/freepbx
+    cmd: fwconsole ma disablerepo commercial
+
+- name: Install module installall
+  shell:
+    chdir: /opt/freepbx
+    cmd: fwconsole ma installall
+
+- name: Delete module Isymphony
+  shell:
+    chdir: /opt/freepbx
+    cmd: fwconsole ma delete cxpanel
+
+- name: Update all modules
+  shell:
+    chdir: /opt/freepbx
+    cmd: fwconsole ma upgradeall
+
+- name: Install module reload
+  shell:
+    chdir: /opt/freepbx
+    cmd: fwconsole reload
+
+- name: Install module restart
+  shell:
+    chdir: /opt/freepbx
+    cmd: fwconsole restart
+
+#- name: Set permissions for asterisk user
+#  ansible.builtin.file:
+#    path: /opt/freepbx-webroot
+#    state: directory
+#    recurse: yes
+#    owner: "{{ run.user }}"
+#    group: "{{ run.user }}"

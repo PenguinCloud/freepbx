@@ -1,0 +1,47 @@
+---
+- name: Create Asterisk user
+  include_tasks:
+    file: create_user.yml
+
+- name: Install dependencies
+  include_tasks:
+    file: install_dependencies.yml
+
+- name: Install node js
+  include_tasks:
+    file: install_nodejs.yml
+
+- name: Install Aterisks
+  include_tasks:
+    file: install_asterisks.yml
+
+- name: Set file permissions for asterisk
+  include_tasks:
+    file: asterisk_permisions.yml
+
+- name: Set Asterisk user
+  include_tasks:
+    file: configure_user_asterisk.yml
+
+- name: Install ODBC
+  include_tasks:
+    file: install_odbc.yml
+
+- name: Install FreePbx
+  include_tasks:
+    file: install_freepbx.yml
+
+- name: Create cert key directory
+  include_tasks:
+    file: create_key_directory.yml
+
+
+#- name: Set Nginx permissions
+#  include_tasks:
+#    file: permissions_nginx.yml
+#
+#- name: Set Php_Fpm permissions
+#  include_tasks:
+#    file: permissions_phpfpm.yml
+#
+

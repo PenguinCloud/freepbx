@@ -1,0 +1,25 @@
+---
+- name: Test database connection
+  include_tasks:
+    file: jobs/tests/database_test.yml
+
+- name: Configure database connection
+  include_tasks:
+    file: config_database_connection.yml
+
+- name: Install freepbx
+  include_tasks:
+    file: freepbx_install.yml
+
+- name: Generate SSL certificate
+  include_tasks:
+    file: openssl_cert.yml
+  when: ssl_cert == "open"
+
+- name: Configure php-fpm
+  include_tasks:
+    file: config_php.yml
+
+- name: Configure NGINX
+  include_tasks:
+    file: config_nginx.yml

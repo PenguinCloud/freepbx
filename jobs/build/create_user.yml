@@ -1,0 +1,9 @@
+---
+- name: Add Asterisk as a Group
+  group:
+    name: asterisk
+
+- name: Add Asterisk as a User
+  user:
+    name: asterisk
+    group: asterisk

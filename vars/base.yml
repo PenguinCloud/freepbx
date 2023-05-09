@@ -1,4 +1,49 @@
 run:
-  user: ptg-user
+  user: asterisk
+
 app:
   title: "{{ lookup('ansible.builtin.env', 'APP_TILE') }}"
+
+asterisk:
+  link: "{{ lookup('ansible.builtin.env', 'ASTERISK_LINK') }}"
+  version: "{{ lookup('ansible.builtin.env', 'ASTERISK_VERSION') }}"
+  ver: "{{ lookup('ansible.builtin.env', 'ASTERISK_VER') }}"
+
+itut: "{{ lookup('ansible.builtin.env', 'ITUT') }}"
+
+freepbx:
+  link: "{{ lookup('ansible.builtin.env', 'FREEPBX_LINK') }}"
+  version: "{{ lookup('ansible.builtin.env', 'FREEPBX_VERSION') }}"
+
+nodejs_link: "{{ lookup('ansible.builtin.env', 'NODEJS_LINK') }}"
+
+odbc:
+  link: "{{ lookup('ansible.builtin.env', 'ODBC_LINK') }}"
+  version: "{{ lookup('ansible.builtin.env', 'ODBC_VERSION') }}"
+
+database:
+  name: "{{ lookup('env', 'DATABASE_NAME') }}"
+  user: "{{ lookup('env', 'DATABASE_USER') }}"
+  password: "{{ lookup('env', 'DATABASE_PASSWORD') }}"
+  host: "{{ lookup('env', 'DATABASE_HOST') }}"
+  port: "{{ lookup('env', 'DATABASE_PORT') }}"
+
+server_address: "{{ lookup('env', 'SERVER_ADDRESS') }}"
+
+organization:
+  name: "{{ lookup('env', 'ORGANIZATION_NAME') }}"
+  country: "{{ lookup('env', 'ORGANIZATION_COUNTRY') }}"
+  email: "{{ lookup('env', 'ORGANIZATION_EMAIL') }}"
+  hostname: "{{ lookup('env', 'ORGANISATION_HOSTNAME') }}"
+
+cpu_count: "{{ lookup('env', 'CPU_COUNT') }}"
+
+file_limit: "{{ lookup('env', 'FILE_LIMIT') }}"
+
+ports:
+  http: "{{ lookup('env', 'HTTP_PORT') }}"
+  https: "{{ lookup('env', 'HTTPS_PORT') }}"
+
+ssl_cert: "{{ lookup('env', 'SSL_CERT') }}"
+
+protocol: "{{ lookup('env', 'PROTOCOL') }}"

@@ -1,0 +1,12 @@
+---
+- name: Add PPA to the system
+  shell: "curl -sL {{ nodejs_link }} | sudo -E bash -"
+  args:
+    warn: false
+
+- name: Install node js
+  apt:
+    name:
+      - nodejs
+    state: latest
+    update_cache: yes
